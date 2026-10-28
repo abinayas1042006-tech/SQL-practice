@@ -1,0 +1,103 @@
+CREATE DATABASE joinpractice;
+USE joinpractice;
+CREATE TABLE Students (
+    student_id INT PRIMARY KEY,
+    student_name VARCHAR(50),
+    department_id INT
+);
+
+
+INSERT INTO Students VALUES
+
+(1, 'Arun', 101),
+
+(2, 'Priya', 102),
+
+(3, 'Karthik', 101),
+
+(4, 'Divya', 103),
+
+(5, 'Rahul', NULL);
+ 
+INSERT INTO Departments VALUES
+
+(101, 'Computer Science'),
+
+(102, 'Data Analytics'),
+
+(104, 'Cyber Security');
+
+
+SELECT
+
+    Students.student_name,
+
+    Departments.department_name
+
+FROM Students
+
+INNER JOIN Departments
+
+ON Students.department_id = Departments.department_id;
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+LEFT JOIN Departments d
+ON s.department_id = d.department_id;
+ SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+RIGHT JOIN Departments d
+ON s.department_id = d.department_id;
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+LEFT JOIN Departments d
+ON s.department_id = d.department_id
+
+UNION
+
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+RIGHT JOIN Departments d
+ON s.department_id = d.department_id;
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+CROSS JOIN Departments d;
+SELECT
+    s1.student_name AS student1,
+    s2.student_name AS student2,
+    s1.department_id
+FROM Students s1
+JOIN Students s2
+ON s1.department_id = s2.department_id
+WHERE s1.student_id < s2.student_id; 
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+JOIN Departments d
+ON s.department_id = d.department_id
+WHERE d.department_name = 'Computer Science';
+SELECT
+    s.student_name,
+    s.department_id,
+    d.department_name
+FROM Students s
+LEFT JOIN Departments d
+ON s.department_id = d.department_id
+WHERE d.department_id IS NULL; 
+SELECT
+    s.student_name,
+    d.department_name
+FROM Students s
+LEFT JOIN Departments d
+ON s.department_id = d.department_id
+ORDER BY s.student_name ASC;
